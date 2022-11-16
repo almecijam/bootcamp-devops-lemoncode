@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  frontend:
+    depends_on:
+      - topics-api
+    build:
+      context: ./frontend
+    environment:
+      API_URI: http://topics-api:5000/api/topics
+    ports:
+      - 8080:3000
+    networks:
+      - lemoncode-challenge
+  topics-api:
+    depends_on:
+      - some-mongo
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: mongodb://some-mongo:27017
+      HOST: topics-api
+    networks:
+      - lemoncode-challenge
+  some-mongo:
+    image: mongo:latest
+    volumes:
+      - volume-some-mongo:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - lemoncode-challenge
+volumes:
+    volume-some-mongo:
+networks:
+    lemoncode-challenge:

@@ -47,15 +47,15 @@ docker run -d --name topics-api \
 
 ### 6 - Frontend
 
-- Cambiamos en el fichero views/index.ejs de front `<%- topic.topicName %>` por `<%- topic.Name %>`.
+- Cambiamos en el fichero views/index.ejs de frontend `<%- topic.topicName %>` por `<%- topic.Name %>`.
 
-- Creamos la imagen backend.
+- Creamos la imagen frontend.
 
 ```
 docker build -t frontend-challenge .
 ```
 
-- Creamos el contenedor front
+- Creamos el contenedor frontend.
 
 ```
 docker run -d --name frontend \
